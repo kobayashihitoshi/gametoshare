@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users
+  root to: "homes#top"
+  resources :posts, only: [:show, :edit, :create, :update, :destroy]
+  resources :users, only: [:show, :index, :edit, :update, :destroy]
+  get '/mypage' => 'users#mypage'
 end
