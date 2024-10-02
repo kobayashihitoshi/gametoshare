@@ -1,24 +1,42 @@
-# README
+# サイト名　GAMEtoShare
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+ゲームのコミュニティサイト
+### テーマを選んだ理由
 
-Things you may want to cover:
+私はゲームが趣味であり、様々なゲームをやっています。
 
-* Ruby version
+しかし好きなゲームであっても話し合える友人が自分にはおらず、同じゲームを好きな人と会えずにおりました。
 
-* System dependencies
+なので、同じような境遇の人たちが出会い、会話やオンラインで一緒にゲームをしたり、色んなのゲーム仲間を作れるようにしたりできればと考えました。
 
-* Configuration
+また、コミュニティを知ることでそのゲームに興味を持ち、新たに始めてくれる人も増えるのではないかと思いこの企画を立ち上げました。
 
-* Database creation
+### ターゲットユーザ
 
-* Database initialization
+・周りに同じゲーム好き仲間がいない人
+・好きなゲームを語りたい人
+・オンライン仲間を探している人
 
-* How to run the test suite
+### 主な利用シーン
 
-* Services (job queues, cache servers, search engines, etc.)
+・同じゲーム仲間と会話したいとき
+・みんなからの情報を得たいとき
+・オンラインゲームが今できる仲間を探したいとき
 
-* Deployment instructions
+## 設計書
 
-* ...
+後ほど作成予定
+
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+
+著作権を考慮して架空のデータを使う予定です。
+なお今後、実在するデータを利用する際には、事前に著作権保持者と契約を結んだ上で利用します。
