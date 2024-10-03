@@ -9,7 +9,7 @@
 
     <h4><%= @user.name %></h4>
       <% if user_signed_in? && @user == current_user %>
-        <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'btn btn-outline-primary' %>
+        <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'btn btn-outline-primary p-2' %>
       <% else %>
       <% end %>
 
@@ -23,17 +23,21 @@
         </ul>
       <% end %>
       <%= form_with model: @post do |f| %>
-        <h4>投稿文</h4>
+        <h4 class="p-3">投稿文</h4>
         <%= f.text_area :body %>
         <h4>画像</h4>
         <%= f.file_field :image, accept: "image/*" %>
         <h4>動画</h4>
         <%= f.file_field :video, accept: "video/*" %>
         
-        <%= f.submit '投稿', class: 'btn btn-outline-dark' %>
+        <%= f.submit '投稿', class: 'btn btn-sm btn-outline-dark' %>
       <% end %>
     <% else %>
     <% end %>
+    
+    <h3 class="p-3">検索欄</h3>
+    <%= render 'searchs/form' %>
+    
     </div>
   
     <div class="col-md-8 offset-md-1">

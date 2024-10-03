@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   
   delete '/' => 'homes#delete_action'
   get '/mypage' => 'users#mypage'
+  get '/search', to: 'searchs#search'
 end
