@@ -1,0 +1,11 @@
+<div class="container text-center p-3">
+  <h2>プロフィール変更</h2>
+　<%= render "devise/shared/error_messages", resource: @user %>
+  <%= form_with model: @user do |f| %>
+    <label class="pb-3" for="inputName">名前</label></br>
+    <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前" %></br>
+    <%= f.submit "変更を保存", class: 'btn btn-outline-primary my-3' %>
+  <% end %>
+  <%= link_to "退会する", user_path(@user), method: :delete, data: { confirm: "本当に退会しますか？" }, class: 'btn btn-sm btn-danger' %>
+  <%= csrf_meta_tags %>
+</div>

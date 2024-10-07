@@ -1,0 +1,21 @@
+<div class="container p-3">
+  <% if @model == 'user' %>
+    <h4>【友達の検索結果】 検索ワード：<%= @content %></h4>
+    <% if @records.present? %>
+      <% @records.each do |user| %>
+        <%= link_to user.name, user_path(user) %>
+      <% end %>
+    <% else %>
+      <p>検索結果がありません。</p>
+    <% end %>
+  <% elsif @model == 'post' %>
+    <h4>【投稿の検索結果】 検索ワード：<%= @content %></h4>
+    <% if @records.present? %>
+      <% @records.each do |post| %>
+        <%= link_to post.body, post_path(post) %>
+      <% end %>
+    <% else %>
+      <p>検索結果がありません。</p>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,44 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-8 offset-md-1">
+      <h2>投稿内容</h2>
+
+      <p><%= link_to @user.name, user_path(@user), class: 'text-dark' %></p>
+  
+      <p><%= @post.body %></p>
+  
+      <% if @post.image.attached? %>
+        <h4>画像</h4>
+        <%= image_tag url_for(@post.image), size: "300x200" %>
+      <% else %>
+      <% end %>
+  
+      <% if @post.video.attached? %>
+        <h4>動画</h4>
+        <%= video_tag url_for(@post.video) %>
+        <% else %>
+      <% end %>
+    </div>
+  
+    <div class="col-md-3">
+      <p>コメント件数：<%= @post.post_comments.count %></p>
+      <% @post.post_comments.each do |post_comment| %>
+        <%= post_comment.user.name %>：
+        <%= post_comment.comment %>
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+        <% end %>
+      <% end %>
+  
+      <%= form_with model: [@post, @post_comment] do |f| %>
+        <%= f.text_area :comment, rows: '3', placeholder: "コメントを書く" %>
+        <%= f.submit "送信する" %>
+      <% end %>
+
+      <% if @post.user == current_user %>
+        <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-sm btn-success' %>
+        <%= link_to "削除する", post_path(@post), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-sm btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+</div>
