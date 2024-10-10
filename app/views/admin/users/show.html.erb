@@ -20,13 +20,13 @@
         <tbody>
           <tr>
             <td>
-              <%= link_to post_path(post), class: 'text-dark' do %>
+              <%= link_to admin_post_path(post), class: 'text-dark' do %>
                 <%= post.body %>
               <% end %>
             </td>
             <td>
               <% if post.image.attached? %>
-                <%= image_tag url_for(post.image) %>
+                <%= image_tag url_for(post.image), size: "300x200" %>
               <% else %>
                 <p></p>
               <% end %>
