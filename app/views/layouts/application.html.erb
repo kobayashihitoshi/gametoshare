@@ -10,7 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
     <header>
       <nav class="navbar navbar-expand-lg bg-danger">
         <div class="container">
@@ -22,7 +22,7 @@
             </strong>
           </a>
           <% else %>
-          <a class="navbar-brand p-3 text-dark" href="/">
+          <a class="navbar-brand p-3 text-dark" href="/admin/sign_in">
             <strong>
               <i class="fa-brands fa-phoenix-framework"></i>
               <span>GAMEtoShare</span>
@@ -37,17 +37,29 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "友達一覧", users_path, class: 'nav-link text-dark' %>
+                  <%= link_to "マイページ", '/mypage', class: 'nav-link btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+                  <%= link_to "友達一覧", users_path, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "コミュニティ一覧", communities_path, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-dark btn-sm' %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                  <%= link_to "トップ", "/", class: 'nav-link btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "nav-link btn btn-outline-dark btn-sm" %>
                 </li>
               <% end %>
             </ul>
@@ -55,15 +67,24 @@
         </div>
       </nav>
     </header>
-
-    
-      <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %> alert-dismissible fade show" role="alert">
-          <%= message %>
-        </div>
-      <% end %>
-
+    <main class="mb-auto">
+      <div class="container">
+        <% flash.each do |message_type, message| %>
+          <div class="alert alert-<%= message_type %> alert-dismissible fade show" role="alert">
+            <%= message %>
+          </div>
+        <% end %>
+      </div>
       <%= yield %>
-    <fooder
+    </main>
+    <footer class="bg-danger">
+      <div class='container'>
+        <div class='row'>
+          <div class='mx-auto text-dark'>
+    　      <p>Copyright © sample All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

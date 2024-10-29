@@ -1,15 +1,10 @@
 <div class="container p-3">
   <div class="row">
     <div class="col-md-3">
-    <% if user_signed_in? && @user == current_user %>
-      <h2>マイページ</h2>
-    <% else %>
-      <h2>ユーザーページ</h2>
-    <% end %>
 
-    <h4><%= @user.name %></h4>
+    <h4 class="my-3"><%= @user.name %></h4>
     <% if user_signed_in? && @user == current_user %>
-      <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'btn btn-outline-primary my-3' %>
+      <%= link_to "プロフィール編集", edit_user_path(current_user), class: 'btn btn-sm btn-outline-dark my-3' %>
     <% else %>
     <% end %>
 
@@ -23,21 +18,22 @@
         </ul>
       <% end %>
       <%= form_with model: @post do |f| %>
-        <h4>投稿文</h4>
+        <h5>投稿文</h5>
         <%= f.text_area :body %>
-        <h4>画像</h4>
+        <p>画像</p>
         <%= f.file_field :image, accept: "image/*" %>
-        <h4>動画</h4>
+        <p>動画</p>
         <%= f.file_field :video, accept: "video/*" %>
         
         <%= f.submit '投稿', class: 'btn btn-outline-dark my-3' %>
       <% end %>
     <% else %>
     <% end %>
+    
     </div>
   
     <div class="col-md-8 offset-md-1">
-      <h2>投稿一覧</h2>
+      <h3>投稿一覧</h3>
       <table class="table table-hover table-user-show">
         <thead>
           <tr>
@@ -49,7 +45,6 @@
         </thead>
         <% @posts.each do |post| %>
         <tbody>
-          <tr>
             <td>
               <%= link_to post_path(post), class: 'text-dark' do %>
                 <%= post.body %>
@@ -72,7 +67,6 @@
             <td>
               <%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %>
             </td>
-          </tr>
         </tbody>
         <% end %>
       </table>
