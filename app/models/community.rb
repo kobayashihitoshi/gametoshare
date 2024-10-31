@@ -16,4 +16,14 @@ class Community < ApplicationRecord
   def is_owned_by?(user)
     owner.id == user.id
   end
+  
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @community = Community.where("title LIKE?","#{word}")
+    elsif search == "partial_match"
+      @community = Community.where("title LIKE?","%#{word}%")
+    else
+      @community = Community.all
+    end
+  end
 end

@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <%= form_with url: search_path, method: :get do %>
     <%= text_field_tag 'content' %>
-    <%= select_tag 'model', options_for_select({ "友達検索" => "user", "投稿検索" => "post"}) %>
+    <%= select_tag 'model', options_for_select({ "友達検索" => "user", "投稿検索" => "post", "コミュニティ検索" => "community#"}) %>
     <%= select_tag 'method', options_for_select({ "完全一致" => "perfect", "部分一致" => "partial" }) %>
     <%= submit_tag '検索' %>
   <% end %>

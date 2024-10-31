@@ -1,18 +1,33 @@
-<div class="container p-3">
+<div class="container p-3 text-center">
   <% if @model == 'user' %>
-    <h4>【友達の検索結果】 検索ワード：<%= @content %></h4>
+    <h3 class="my-2">【友達の検索結果】</br> 検索ワード：<%= @content %></h3>
     <% if @records.present? %>
       <% @records.each do |user| %>
-        <%= link_to user.name, user_path(user) %>
+        <li>
+          <%= link_to user.name, user_path(user), class: 'text-dark' %>
+        </li>
       <% end %>
     <% else %>
       <p>検索結果がありません。</p>
     <% end %>
   <% elsif @model == 'post' %>
-    <h4>【投稿の検索結果】 検索ワード：<%= @content %></h4>
+    <h3 class="my-2">【投稿の検索結果】</br> 検索ワード：<%= @content %></h3>
     <% if @records.present? %>
       <% @records.each do |post| %>
-        <%= link_to post.body, post_path(post) %>
+        <li>
+          <%= link_to post.body, post_path(post), class: 'text-dark' %>
+        </li>
+      <% end %>
+    <% else %>
+      <p>検索結果がありません。</p>
+    <% end %>
+  <% else @model == 'community' %>
+    <h3 class="my-2">【コミュニティの検索結果】</br> 検索ワード：<%= @content %></h3>
+    <% if @records.present? %>
+      <% @records.each do |community| %>
+        <li>
+          <%= link_to community.name, community_path(community), class: 'text-dark' %>
+        </li>
       <% end %>
     <% else %>
       <p>検索結果がありません。</p>
