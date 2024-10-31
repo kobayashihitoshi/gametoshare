@@ -37,29 +37,32 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li class="nav-item">
-                  <%= link_to "マイページ", '/mypage', class: 'nav-link btn btn-outline-dark btn-sm' %>
+                  <%= link_to "マイページ", '/mypage', class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "友達一覧", users_path, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                  <%= link_to "友達一覧", users_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "コミュニティ一覧", communities_path, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                  <%= link_to "コミュニティ一覧", communities_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                </li>
+                <li class="nav-item mx-2">
+                  <%= render 'public/searchs/form' %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "トップ", "/", class: 'nav-link btn btn-outline-dark btn-sm' %>
+                  <%= link_to "トップ", "/", class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link btn btn-outline-dark btn-sm' %>
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "nav-link btn btn-outline-dark btn-sm" %>
+                  <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "nav-link bg-light text-dark btn btn-outline-dark btn-sm" %>
                 </li>
               <% end %>
             </ul>
