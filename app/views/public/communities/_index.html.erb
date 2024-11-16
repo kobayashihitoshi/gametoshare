@@ -1,7 +1,7 @@
 <table class='table'>
   <thead>
     <tr>
-      <th></th>
+      <th colspan="2"></th>
       <th>コミュニティ名</th>
       <th>紹介文</th>
       <th>参加人数</th>
@@ -11,7 +11,7 @@
   <tbody>
     <% communities.each do |community| %>
       <tr>
-        <td>
+        <td colspan="2">
           <% if community.community_image.attached? %>
             <%= image_tag community.community_image,size:"75x50" %>
           <% else %>
@@ -33,15 +33,7 @@
             <li class="nav-item">
               <%= link_to 'コミュニティへ', community_path(community), class: 'btn btn-sm btn-success mr-2' %>
             </li>
-            <li class="nav-item">
-              <% if community.community_users.exists?(user_id: current_user.id) %>
-                <%= link_to 'グループ退出', community_community_users_path(community), method: :delete, class: "btn btn-sm btn-danger mr-2", data: { confirm: "本当にグループを退出しますか？" } %>
-              <% elsif community.permits.exists?(user_id: current_user.id) %>
-                <%= link_to '申請取消', community_permits_path(community), method: :delete, class: "btn btn-sm btn-danger mr-2" %>
-              <% else %>
-                <%= link_to '加入申請', community_permits_path(community), method: :post, class: "btn btn-sm btn-success mr-2" %>
-              <% end %>
-            </li>
+            
             <% if community.owner_id == current_user.id %>
             <li class="nav-item">
               <div class="dropdown">
@@ -54,6 +46,16 @@
                   <%= link_to 'グループ削除', community_path(community), method: :delete,  class: "dropdown-item text-danger bg-transparent", data: { confirm: "本当に削除しますか？" } %>
                 </div>
               </div>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <% if community.community_users.exists?(user_id: current_user.id) %>
+                <%= link_to 'グループ退出', community_community_users_path(community), method: :delete, class: "btn btn-sm btn-danger mr-2", data: { confirm: "本当にグループを退出しますか？" } %>
+              <% elsif community.permits.exists?(user_id: current_user.id) %>
+                <%= link_to '申請取消', community_permits_path(community), method: :delete, class: "btn btn-sm btn-danger mr-2" %>
+              <% else %>
+                <%= link_to '加入申請', community_permits_path(community), method: :post, class: "btn btn-sm btn-success mr-2" %>
+              <% end %>
             </li>
             <% end %>
           </ul>

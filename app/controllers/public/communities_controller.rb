@@ -23,6 +23,7 @@ class Public::CommunitiesController < ApplicationController
     @community = Community.new(community_params)
     @community.owner_id = current_user.id
     if @community.save
+      @community_user = CommunityUser.create(user_id: current_user.id, community_id: @community.id)
       redirect_to communities_path, flash: {success: "コミュニティの作成に成功しました"}
     else
       render 'new', flash: {danger: "コミュニティの作成に失敗しました"}
