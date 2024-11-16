@@ -11,7 +11,11 @@ class Public::CommunityUsersController < ApplicationController
   
   def destroy
     community_user = current_user.community_users.find_by(community_id: params[:community_id])
-    community_user.destroy
-    redirect_to communities_path, flash: {danger: "コミュニティから退会しました"}
+    if community_user
+      community_user.destroy
+      redirect_to communities_path, flash: {danger: "コミュニティから退会しました"}
+    else
+      redirect_to communities_path, flash: {danger: "コミュニティへのアクセス権限がありません"}
+    end
   end
 end
