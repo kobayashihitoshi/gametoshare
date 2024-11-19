@@ -1,23 +1,28 @@
 <div class="container p-3">
   <div class="row">
     <div class="col-md-4 offset-md-1">
-      <h2>投稿内容</h2>
-
-      <p><%= link_to @user.name, user_path(@user), class: 'text-dark' %></p>
-  
-      <p><%= @post.body %></p>
+      
+      <h4>投稿者</h4>
+      
+      <h5 class="my-3">
+        <%= link_to @user.name, user_path(@user), class: 'text-dark' %>
+      </h5>
+      
+      <h4 class="my-3">投稿内容</h4>
+      
+      <h5><%= @post.body %></h5>
   
       <% if @post.image.attached? %>
-        <h4>画像</h4>
-        <%= image_tag url_for(@post.image), size: "300x200" %>
+        <%= image_tag url_for(@post.image), class: "my-3", size: "300x200", style: "object-fit: cover;" %>
       <% else %>
       <% end %>
   
       <% if @post.video.attached? %>
-        <h4>動画</h4>
-        <%= video_tag url_for(@post.video) %>
+        <%= video_tag url_for(@post.video), class: "my-3", size: "300x200", style: "object-fit: cover;" %>
         <% else %>
       <% end %>
+      
+      <%= l @post.created_at, format: :short %></br>
       
       <% if @post.user == current_user %>
         <%= link_to "編集する", edit_post_path(@post), class: 'btn btn-sm btn-success mt-3' %>
@@ -26,23 +31,22 @@
     </div>
   
     <div class="col-md-3">
-      <p>みんなのコメント</p>
+      <h5>コメント</h5>
+      
       <% @post.post_comments.each do |post_comment| %>
-        <ul>
-          <li>
-            <%= post_comment.user.name %>：
-            <%= post_comment.comment %>
-            <% if post_comment.user == current_user %>
-              <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-danger mx-2' %>
-            <% end %>
-          </li>
-        </ul>
+      <ul>
+        <%= post_comment.user.name %>：
+        <%= post_comment.comment %>
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: 'btn btn-sm btn-danger mx-4' %>
+        <% end %>
+      </ul>
       <% end %>
   
-      <div class="pt-2 mx-3">
+      <div class="pt-5">
         <%= form_with model: [@post, @post_comment] do |f| %>
           <%= f.text_area :comment, rows: '2', placeholder: "コメントを書く" %>
-          <%= f.submit "送信する" %>
+          <%= f.submit "送信する", class: "btn btn-sm btn-outline-secondary text-dark" %>
         <% end %>
       </div>
 

@@ -9,7 +9,8 @@ class Public::CommunityPostsController < ApplicationController
       redirect_to community_path(@community), flash: {success: "投稿に成功しました"}
     else
       @community_posts = CommunityPost.all
-      render "/public/communities/show", flash: {danger: "投稿に失敗しました"}
+      flash.now[:danger] = "投稿に失敗しました"
+      render "/public/communities/show"
     end
   end
   

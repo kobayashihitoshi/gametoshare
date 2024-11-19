@@ -25,7 +25,8 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(current_user.id), flash: {success: "編集しました"}
     else
-      render :edit, flash: {danger: "失敗しました"}
+      flash.now[:danger] = "失敗しました"
+      render :edit
     end
   end
   
@@ -34,7 +35,8 @@ class Public::UsersController < ApplicationController
     if @user.destroy
       redirect_to root_path, flash: {danger: "退会しました"}
     else
-      render :edit, flash: {danger: "失敗しました"}
+      flash.now[:danger] = "失敗しました"
+      render :edit
     end
   end
 

@@ -70,7 +70,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   
   def ensure_normal_user
     if resource.email == 'guest@example.com'
-      flash.now[:notice] = "ゲストユーザーの削除はできません。"
+      flash.now[:danger] = "ゲストユーザーの削除はできません。"
       redirect_to root_path
     end
   end

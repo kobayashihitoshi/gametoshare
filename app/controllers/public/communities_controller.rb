@@ -26,7 +26,8 @@ class Public::CommunitiesController < ApplicationController
       @community_user = CommunityUser.create(user_id: current_user.id, community_id: @community.id)
       redirect_to communities_path, flash: {success: "コミュニティの作成に成功しました"}
     else
-      render 'new', flash: {danger: "コミュニティの作成に失敗しました"}
+      flash.now[:danger] = "コミュニティの作成に失敗しました"
+      render 'new'
     end
   end
   
@@ -39,7 +40,8 @@ class Public::CommunitiesController < ApplicationController
     if @community.update(community_params)
       redirect_to communities_path, flash: {success: "コミュニティの編集に成功しました"}
     else
-      render 'edit', flash: {danger: "コミュニティの編集に失敗しました"}
+      flash.now[:danger] = "コミュニティの編集に失敗しました"
+      render 'edit'
     end
   end
   

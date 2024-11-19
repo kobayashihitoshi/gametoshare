@@ -37,8 +37,7 @@ class Public::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user
-    flash[:notice] = "ゲストユーザーとしてログインしました。"
-    redirect_to "/mypage"
+    redirect_to "/mypage", flash: {success: "ゲストとしてログインしました"}
   end
   
   protected

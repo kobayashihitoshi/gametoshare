@@ -16,7 +16,8 @@ class Public::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path(@post.id), flash: {success: "投稿の編集に成功しました"}
     else
-      render :edit, flash: {danger: "投稿の編集に失敗しました"}
+      flash.now[:danger] = "投稿の編集に失敗しました"
+      render :edit
     end
   end
 
@@ -28,7 +29,8 @@ class Public::PostsController < ApplicationController
     else
       @user = current_user
       @posts = Post.all
-      render template: "users/show", flash: {danger: "投稿に失敗しました"}
+      flash.now[:danger] = "投稿に失敗しました"
+      render template: "public/users/show"
     end
   end
   
