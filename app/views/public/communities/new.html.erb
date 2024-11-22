@@ -2,6 +2,14 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <h3>コミュニティ作成</h3>
+        <% if @community.errors.any? %>
+          <%= @community.errors.count %>件のエラーが発生しました。
+          <ul>
+            <% @community.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
         <%= form_with(model: @community) do |f| %>
           <div class="form-group">
             <%= f.label :コミュニティ名 %>

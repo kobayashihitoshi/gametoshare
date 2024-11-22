@@ -52,7 +52,7 @@
         <tbody>
             <td>
               <%= link_to post_path(post), class: 'text-dark' do %>
-                <%= post.body %>
+                <%= simple_format(post.body, sanitize: true) %>
               <% end %>
             </td>
             <td>
