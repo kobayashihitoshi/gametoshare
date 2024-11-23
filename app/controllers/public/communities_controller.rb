@@ -14,7 +14,7 @@ class Public::CommunitiesController < ApplicationController
   
   def show
     @community_post = CommunityPost.new
-    @community_posts = CommunityPost.all
+    @community_posts = CommunityPost.all.order(created_at: :desc)
     @community = Community.find(params[:id])
     @community_post.user_id = current_user.id
   end

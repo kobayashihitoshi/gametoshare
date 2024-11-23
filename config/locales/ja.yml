@@ -3,3 +3,20 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%m/%d %H:%M"
+  activerecord:
+    errors:
+      models:
+        post:
+          attributes:
+            body:
+              blank: "投稿文が空白です"
+        community_post:
+          attributes:
+            body:
+              blank: "投稿文が空白です"
+        community:
+          attributes:
+            name:
+              blank: "コミュニティ名が空白です"
+            introduction:
+              blank: "紹介文が空白です"

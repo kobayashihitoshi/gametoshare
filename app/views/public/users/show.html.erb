@@ -26,9 +26,9 @@
         <h5>投稿</h5>
         <%= f.text_area :body %>
         <h5 class="mt-3">画像
-        <%= f.file_field :image, accept: "image/*" %></h5>
+        <%= f.file_field :image, accept: "image/*", class: "btn-sm" %></h5>
         <h5 class="mt-3">動画
-        <%= f.file_field :video, accept: "video/*" %></h5>
+        <%= f.file_field :video, accept: "video/*", class: "btn-sm" %></h5>
         
         <%= f.submit '投稿', class: 'btn btn-outline-dark my-3' %>
       <% end %>
@@ -75,6 +75,11 @@
         </tbody>
         <% end %>
       </table>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end">
+          <%= paginate @posts %>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>
