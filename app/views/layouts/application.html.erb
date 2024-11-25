@@ -40,29 +40,29 @@
                   <%= render 'public/searchs/form' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "マイページ", '/mypage', class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                  <%= link_to "マイページ", '/mypage', class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "友達一覧", users_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                  <%= link_to "友達一覧", users_path, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "コミュニティ一覧", communities_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                  <%= link_to "コミュニティ一覧", communities_path, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
                 </li>
               <% else %>
                 <li class="nav-item">
-                  <%= link_to "トップ", "/", class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                  <%= link_to "トップ", "/", class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "nav-link bg-light text-dark btn btn-outline-dark btn-sm" %>
+                  <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "nav-link bg-secondary text-light btn btn-outline-dark btn-sm" %>
                 </li>
               <% end %>
             </ul>
@@ -71,7 +71,7 @@
       </nav>
     </header>
     <main class="mb-auto">
-      <div class="container">
+      <div class="container-fluid pt-2">
         <% flash.each do |message_type, message| %>
           <div class="alert alert-<%= message_type %>" role="alert">
             <%= message %><button type="button" class="close" data-dismiss="alert">&times;</button>

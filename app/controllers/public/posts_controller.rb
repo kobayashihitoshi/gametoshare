@@ -28,7 +28,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post), flash: {success: "投稿に成功しました"}
     else
       @user = current_user
-      @posts = Post.all
+      @posts = Post.all.page(params[:page]).per(5)
       flash.now[:danger] = "投稿に失敗しました"
       render template: "public/users/show"
     end
