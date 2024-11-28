@@ -29,17 +29,14 @@
             </strong>
           </a>
           <% end %>
-          <% if user_signed_in? %>
-            <%= render 'public/searchs/form' %>
-          <% else %>
-          <% end %>
-          <button class="navbar-toggler bg-secondary" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          
+          <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon icon-light"></span>
+            <i class="fa-solid fa-bars"></i>
           </button>
-          <div class="navbar-light" id="navbarNavDropdown">
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <% if user_signed_in? %>
-              <ul class="navbar-nav ml-auto">
+              <ul class="navbar-nav">
                 <li class="nav-item">
                   <%= link_to "マイページ", '/mypage', class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
@@ -54,7 +51,7 @@
                 </li>
               </ul>
             <% else %>
-              <ul class="navbar-nav ml-auto">
+              <ul class="navbar-nav">
                 <li class="nav-item">
                   <%= link_to "トップ", "/", class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
@@ -70,6 +67,14 @@
               </ul>
             <% end %>
           </div>
+          
+          <% if user_signed_in? %>
+          <div class="m-2">
+            <%= render 'public/searchs/form' %>
+          </div>
+          <% else %>
+          <% end %>
+          
         </div>
       </nav>
     </header>
