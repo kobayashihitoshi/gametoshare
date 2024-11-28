@@ -13,12 +13,12 @@
   <body class="d-flex flex-column vh-100">
     <header>
       <nav class="navbar navbar-expand-lg bg-danger ">
-        <div class="container">
+        <div class="container-fluid">
           <% if user_signed_in? %>
           <a class="navbar-brand p-3 text-dark" href="/mypage">
             <strong>
               <i class="fa-brands fa-phoenix-framework"></i>
-              <span>GAME to Share</span>
+              <span>GAMEtoShare</span>
             </strong>
           </a>
           <% else %>
@@ -29,43 +29,46 @@
             </strong>
           </a>
           <% end %>
-          <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+          <% if user_signed_in? %>
+            <%= render 'public/searchs/form' %>
+          <% else %>
+          <% end %>
+          <button class="navbar-toggler bg-secondary" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon icon-light"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-              <% if user_signed_in? %>
-                <li class="nav-item mx-2">
-                  <%= render 'public/searchs/form' %>
+          <div class="navbar-light" id="navbarNavDropdown">
+            <% if user_signed_in? %>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <%= link_to "マイページ", '/mypage', class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "マイページ", '/mypage', class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
+                  <%= link_to "友達一覧", users_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "友達一覧", users_path, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
+                  <%= link_to "コミュニティ一覧", communities_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "コミュニティ一覧", communities_path, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
+                </li>
+              </ul>
+            <% else %>
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <%= link_to "トップ", "/", class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
-                </li>
-              <% else %>
-                <li class="nav-item">
-                  <%= link_to "トップ", "/", class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link bg-secondary text-light btn btn-outline-dark btn-sm' %>
+                  <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: 'nav-link bg-light text-dark btn btn-outline-dark btn-sm' %>
                 </li>
-                <li class="nav-item">
-                  <%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post, class: "nav-link bg-secondary text-light btn btn-outline-dark btn-sm" %>
-                </li>
-              <% end %>
-            </ul>
+              </ul>
+            <% end %>
           </div>
         </div>
       </nav>
