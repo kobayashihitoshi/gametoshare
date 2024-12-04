@@ -1,5 +1,5 @@
 <div class='row'>
-  <div class='col-md-3'>
+  <div class='col-md-3 offset-md-1'>
     <% if @community.community_users.exists?(user_id: current_user.id) %>
     <div>
       <% if @community_post.errors.any? %>
@@ -26,7 +26,7 @@
     <% else %>
     <% end %>
   </div>
-  <div class='col-md-8 offset-md-1'>
+  <div class='col-md-7'>
     <h3 class="my-3">コミュニティ</h3>
     <table class='table table-hover table-inverse'>
       <thead>
@@ -75,7 +75,7 @@
           </td>
           <td>
             <% if @community_post.user == current_user %>
-              <%= link_to "削除", community_post_path(post), data: { confirm: "本当に削除しますか？" }, method: :delete, class: 'btn btn-danger' %>
+              <%= link_to "<i class='fa-solid fa-delete-left'></i>".html_safe, community_post_path(post), data: { confirm: "本当に削除しますか？" }, method: :delete, class: 'btn btn-danger btn-sm' %>
             <% end %>
           </td>
         </tr>
@@ -84,7 +84,7 @@
     </table>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-end">
-        <%= paginate @posts %>
+        <%= paginate @community_posts %>
       </ul>
     </nav>
   </div>

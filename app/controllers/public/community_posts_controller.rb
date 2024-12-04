@@ -8,7 +8,7 @@ class Public::CommunityPostsController < ApplicationController
     if @community_post.save
       redirect_to community_path(@community), flash: {success: "投稿に成功しました"}
     else
-      @community_posts = CommunityPost.all
+      @community_posts = CommunityPost.all.order(created_at: :desc).page(params[:page]).per(5)
       flash.now[:danger] = "投稿に失敗しました"
       render "/public/communities/show"
     end
