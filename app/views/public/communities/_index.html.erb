@@ -1,67 +1,60 @@
-<table class='table'>
-  <thead>
-    <tr>
-      <th colspan="2"></th>
-      <th>コミュニティ名</th>
-      <th>紹介文</th>
-      <th>参加人数</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% communities.each do |community| %>
-      <tr>
-        <td colspan="2">
-          <% if community.community_image.attached? %>
-            <%= image_tag community.community_image,size:"75x50" %>
-          <% else %>
-            
-          <% end %>
-        </td>
-        <td>
-          <%= community.name %>
-        </td>
-        <td>
-          <%= community.introduction %>
-        </td>
-        <td>
-          <%= community.community_users.count %>
-        </td>
-        <td>
-          <nav class="navbar navbar-expand-lg">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <%= link_to 'コミュニティへ', community_path(community), class: 'btn btn-sm btn-success mr-2' %>
-            </li>
-            
-            <% if community.owner_id == current_user.id %>
-            <li class="nav-item">
-              <div class="dropdown">
-                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  創設者専用カテゴリ
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                  <%= link_to "承認待ち一覧", permits_path(community),  class: "dropdown-item text-secondary bg-transparent" %>
-                  <%= link_to 'グループ編集', edit_community_path(community),  class: "dropdown-item text-success bg-transparent" %>
-                  <%= link_to 'グループ削除', community_path(community), method: :delete,  class: "dropdown-item text-danger bg-transparent", data: { confirm: "本当に削除しますか？" } %>
-                </div>
+<div class="card container">
+  <div class="card-header row bg-danger">
+    <h5 class="col-2"></h5>
+    <h5 class="card-title col-3">コミュニティ名</h5>
+    <h5 class="card-introduction col-3">紹介文</h5>
+    <h5 class="card-number col-2">参加人数</h5>
+  </div>
+  <% communities.each do |community| %>
+  <div class="card-body row">
+    <div class="col-2">
+      <% if community.community_image.attached? %>
+        <%= image_tag community.community_image,size:"150x75" %>
+      <% else %>
+      <% end %>
+    </div>
+    <h5 class="col-3">
+      <%= community.name %>
+    </h5>
+    <h5 class="col-3">
+      <%= community.introduction %>
+    </h5>
+    <h5 class="col-2">
+      <%= community.community_users.count %>
+    </h5>
+    <div class="col-4">
+      <nav class="navbar navbar-expand-lg">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <%= link_to 'コミュニティへ', community_path(community), class: 'btn btn-sm btn-success mr-2' %>
+          </li>
+          <% if community.owner_id == current_user.id %>
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                創設者専用カテゴリ
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <%= link_to "承認待ち一覧", permits_path(community),  class: "dropdown-item text-secondary bg-transparent" %>
+                <%= link_to 'グループ編集', edit_community_path(community),  class: "dropdown-item text-success bg-transparent" %>
+                <%= link_to 'グループ削除', community_path(community), method: :delete,  class: "dropdown-item text-danger bg-transparent", data: { confirm: "本当に削除しますか？" } %>
               </div>
-            </li>
+            </div>
+          </li>
+          <% else %>
+          <li class="nav-item">
+            <% if community.community_users.exists?(user_id: current_user.id) %>
+              <%= link_to 'グループ退出', community_community_users_path(community), method: :delete, class: "btn btn-sm btn-danger mr-2", data: { confirm: "本当にグループを退出しますか？" } %>
+            <% elsif community.permits.exists?(user_id: current_user.id) %>
+              <%= link_to '申請取消', community_permits_path(community), method: :delete, class: "btn btn-sm btn-danger mr-2" %>
             <% else %>
-            <li class="nav-item">
-              <% if community.community_users.exists?(user_id: current_user.id) %>
-                <%= link_to 'グループ退出', community_community_users_path(community), method: :delete, class: "btn btn-sm btn-danger mr-2", data: { confirm: "本当にグループを退出しますか？" } %>
-              <% elsif community.permits.exists?(user_id: current_user.id) %>
-                <%= link_to '申請取消', community_permits_path(community), method: :delete, class: "btn btn-sm btn-danger mr-2" %>
-              <% else %>
-                <%= link_to '加入申請', community_permits_path(community), method: :post, class: "btn btn-sm btn-success mr-2" %>
-              <% end %>
-            </li>
+              <%= link_to '加入申請', community_permits_path(community), method: :post, class: "btn btn-sm btn-success mr-2" %>
             <% end %>
-          </ul>
-          </nav>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table> 
+          </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -27,10 +27,10 @@
     <% end %>
   </div>
   <div class='col-md-7'>
-    <h3 class="my-3">コミュニティ</h3>
-    <table class='table table-hover table-inverse'>
+    <table class=' my-3 table table-hover table-inverse'>
       <thead>
         <tr>
+          <th></th>
           <th>
             <% if @community.community_image.attached? %>
               <%= image_tag @community.community_image,size:"75x50" %>
@@ -60,14 +60,12 @@
             <% if post.image.attached? %>
               <%= image_tag url_for(post.image), size: "200x100" %>
             <% else %>
-              <p></p>
             <% end %>
           </td>
           <td>
             <% if post.video.attached? %>
-              <%= video_tag url_for(post.video) %>
+              <%= video_tag url_for(post.video), size: "200x100" %>
             <% else %>
-              <p></p>
             <% end %>
           </td>
           <td>

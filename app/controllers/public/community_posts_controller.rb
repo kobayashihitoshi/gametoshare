@@ -25,6 +25,6 @@ class Public::CommunityPostsController < ApplicationController
   private
 
   def community_post_params
-    params.require(:community_post).permit(:user_id, :community_id, :body)
+    params.require(:community_post).permit(:user_id, :community_id, :body, :image, :video)
   end
 end
